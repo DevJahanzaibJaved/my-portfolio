@@ -368,7 +368,7 @@ strong {
 .navbar-nav .nav-link {
   display: inline-block;
   color: var(--section-bg-color);
-  font-size: var(--menu-font-size);
+  font-size: 19px;
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   position: relative;
@@ -434,12 +434,13 @@ strong {
 
 .navbar-toggler .navbar-toggler-icon {
   background: var(--white-color);
-  transition: background 10ms 300ms ease;
+  transition: background 10ms ease 300ms;
   display: block;
   width: 30px;
   height: 2px;
   position: relative;
 }
+
 
 .navbar-toggler .navbar-toggler-icon:before,
 .navbar-toggler .navbar-toggler-icon:after {
@@ -484,7 +485,7 @@ strong {
 .hero-title,
 .hero h2 {
   background: var(--white-color);
-  color: black
+  color: black;
   box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
   border-radius: var(--border-radius-large);
   display: inline-block;
