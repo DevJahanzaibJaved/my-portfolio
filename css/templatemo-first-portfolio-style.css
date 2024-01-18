@@ -867,7 +867,7 @@ strong {
   height: 150px;
 }
 
-.custom-form button[type="button"] {
+.custom-form button[type="submit"] {
   background: var(--secondary-color);
   border: none;
   border-radius: var(--border-radius-large);
@@ -877,8 +877,8 @@ strong {
   margin-bottom: 0;
 }
 
-.custom-form button[type="button"]:hover,
-.custom-form button[type="button"]:focus {
+.custom-form button[type="submit"]:hover,
+.custom-form button[type="submit"]:focus {
   background: var(--primary-color);
   border-color: transparent;
 }
