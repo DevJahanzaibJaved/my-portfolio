@@ -85,10 +85,11 @@
           });
         }, observerOptions);
 
-        // Observe projects thumbnails
+        // Observe projects thumbnails with simple staggered delays
         const projectsThumbs = document.querySelectorAll('.projects-thumb');
         projectsThumbs.forEach(function(el, index) {
-          el.style.animationDelay = (index * 0.1) + 's';
+          // Simple staggered delay for smooth sequential appearance
+          el.style.transitionDelay = (index * 0.1) + 's';
           projectsObserver.observe(el);
         });
 
@@ -103,10 +104,11 @@
           });
         }, observerOptions);
 
-        // Observe testimonials cards
+        // Observe testimonials cards with staggered delays
         const testimonialCards = document.querySelectorAll('.testimonials .card');
         testimonialCards.forEach(function(el, index) {
-          el.style.animationDelay = (index * 0.2) + 's';
+          // Simple staggered delay for smooth sequential appearance
+          el.style.transitionDelay = (index * 0.15) + 's';
           testimonialsObserver.observe(el);
         });
 
@@ -232,6 +234,53 @@
         animateNumbers();
       });
     }
+
+    // Contact Form Submission Handler
+    $('#contact-form').on('submit', function(e) {
+      const $form = $(this);
+      const $submitBtn = $('#submit-btn');
+      const $messageDiv = $('#form-message');
+      const originalBtnText = $submitBtn.text();
+      
+      // Validate form before submission
+      let isValid = true;
+      const requiredFields = $form.find('[required]');
+      
+      requiredFields.each(function() {
+        const $field = $(this);
+        if (!$field.val().trim()) {
+          isValid = false;
+          $field.addClass('is-invalid');
+        } else {
+          $field.removeClass('is-invalid');
+        }
+      });
+      
+      if (!isValid) {
+        e.preventDefault();
+        $messageDiv.html('<div class="alert alert-danger" role="alert" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #EF4444; padding: 15px; border-radius: 10px;"><strong>Error!</strong> Please fill in all required fields.</div>').fadeIn();
+        return false;
+      }
+      
+      // Disable submit button and show loading state
+      $submitBtn.prop('disabled', true).text('Sending...');
+      $messageDiv.hide();
+      
+      // FormSubmit.co will handle the submission and redirect
+      // The form will submit normally, and FormSubmit will redirect to _next URL
+      // If we want to show a message before redirect, we can do it here
+      // But since FormSubmit redirects, the message will be shown on the redirect page
+    });
+    
+    // Handle form validation on input
+    $('#contact-form input, #contact-form textarea').on('input blur', function() {
+      const $field = $(this);
+      if ($field.attr('required') && !$field.val().trim()) {
+        $field.addClass('is-invalid');
+      } else {
+        $field.removeClass('is-invalid');
+      }
+    });
     
   })(window.jQuery);
 
